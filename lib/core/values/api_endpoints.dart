@@ -11,5 +11,4 @@ abstract class ApiEndpoints {
   static const String resetPassword = '$baseUrl/auth/resetPassword';
   static const String logout = '$baseUrl/auth/logout';
   static const String updateUserData = '$baseUrl/users/updateMe/';
- 
 }

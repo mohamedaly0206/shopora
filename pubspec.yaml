@@ -39,6 +39,10 @@ dependencies:
   get_it: ^9.2.1
   flutter_bloc: ^9.1.1
   injectable: ^3.0.0
+  flutter_secure_storage: ^11.2.0
+  flutter_localizations:
+    sdk: flutter
+  equatable: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -59,6 +63,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
