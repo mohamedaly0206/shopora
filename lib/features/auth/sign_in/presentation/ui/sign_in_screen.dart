@@ -5,6 +5,13 @@ class SignInScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Text(
+          'Sign In Screen',
+          style: Theme.of(context).textTheme.headlineMedium,
+        ),
+      ),
+    );
   }
 }

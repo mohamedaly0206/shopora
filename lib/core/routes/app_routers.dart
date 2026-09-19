@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shopora/core/routes/app_routes.dart';
 import 'package:shopora/features/auth/sign_in/presentation/ui/sign_in_screen.dart';
 import 'package:shopora/features/auth/sign_up/presentation/ui/sign_in_screen.dart';
-import 'package:shopora/shopora.dart';
 
 abstract class AppRouters {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,7 +13,10 @@ abstract class AppRouters {
       // case AppRoutes.forgetPasswordScreen:
       //   return MaterialPageRoute(builder: (_) => const ForgetPasswordScreen());
       default:
-        return MaterialPageRoute(builder: (_) => const Shopora());
+        return MaterialPageRoute(
+          builder: (_) =>
+              const Scaffold(body: Center(child: Text('Route not found'))),
+        );
     }
   }
 }
