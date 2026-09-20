@@ -81,23 +81,13 @@ abstract class AppValidators {
     final loc = AppLocalizations.of(context)!;
 
     if (value == null || value.trim().isEmpty) {
-      return '$fieldName ${loc.authFieldRequired}';
+      return '${loc.authFullNameRequired}';
     }
 
     final trimmedValue = value.trim();
 
     if (trimmedValue.length < 3) {
-      return '$fieldName ${loc.authNameLength}';
-    }
-
-    final nameRegex = RegExp(r'^[a-zA-Z]+$');
-
-    if (!nameRegex.hasMatch(trimmedValue)) {
-      return '$fieldName ${loc.authNameOnlyLetters}';
-    }
-
-    if (trimmedValue.contains(' ')) {
-      return '$fieldName ${loc.authNameNoSpaces}';
+      return '${loc.authNameLength}';
     }
 
     return null;

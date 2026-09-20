@@ -3,6 +3,16 @@ import 'package:flutter/material.dart';
 abstract class AppTextStyles {
   AppTextStyles._();
 
+  // Bold
+
+  static const textStyleBold20 = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+  static const textStyleBold16 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
   // SemiBold
   static const textStyleSemiBold20 = TextStyle(
     fontSize: 20,

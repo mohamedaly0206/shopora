@@ -21,6 +21,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authSignUp => 'إنشاء حساب';
 
   @override
+  String get authWelcomeBack => 'مرحباً بعودتك';
+
+  @override
+  String get authSignInToYourAccount => 'تسجيل الدخول إلى حساب شوبورا الخاص بك';
+
+  @override
+  String get authCreateYourAccount => 'أنشئ حسابك';
+
+  @override
+  String get authJoinShopora =>
+      'انضم إلى شوبورا لفتح خصومات الفلاش الحصرية والشحن السريع المجاني ومزايا الأعضاء.';
+
+  @override
   String get authLoginNow => 'سجّل الدخول الآن';
 
   @override
@@ -45,10 +58,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authUserName => 'اسم المستخدم';
 
   @override
-  String get authFirstName => 'الاسم الأول';
-
-  @override
-  String get authLastName => 'اسم العائلة';
+  String get authFullName => 'الاسم بالكامل';
 
   @override
   String get authGender => 'الجنس';
@@ -75,7 +85,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authEnterYourUserName => 'أدخل اسم المستخدم الخاص بك';
 
   @override
-  String get authEnterTheName => 'أدخل الاسم';
+  String get authEnterFullName => 'أدخل اسمك بالكامل';
 
   @override
   String get authEnterYourLastName => 'أدخل اسم العائلة';
@@ -93,7 +103,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authDoNotHaveAnAccount => 'ليس لديك حساب؟ ';
 
   @override
-  String get authAlreadyHaveAnAccount => 'لديك حساب بالفعل؟';
+  String get authAlreadyHaveAnAccount => ' لديك حساب بالفعل؟';
 
   @override
   String get authSignInToExploreMore => 'سجّل الدخول لاستكشاف المزيد';
@@ -177,6 +187,9 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get authFieldRequired => 'هذا الحقل مطلوب';
+
+  @override
+  String get authFullNameRequired => 'الاسم بالكامل مطلوب';
 
   @override
   String get authNameLength => 'يجب أن يكون الاسم 3 أحرف على الأقل';

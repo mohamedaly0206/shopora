@@ -1,13 +1,9 @@
-import 'dart:convert';
 import 'package:json_annotation/json_annotation.dart';
-
-import 'package:shopora/features/auth/sign_up/data/models/response/user.dart';
-
+import 'package:shopora/core/models/user.dart';
 part 'sign_up_response.g.dart';
 
-
 @JsonSerializable()
-class Signup {
+class SignupResponse {
   @JsonKey(name: "message")
   final String? message;
   @JsonKey(name: "user")
@@ -15,9 +11,10 @@ class Signup {
   @JsonKey(name: "token")
   final String? token;
 
-  Signup({this.message, this.user, this.token});
+  SignupResponse({this.message, this.user, this.token});
 
-  factory Signup.fromJson(Map<String, dynamic> json) => _$SignupFromJson(json);
+  factory SignupResponse.fromJson(Map<String, dynamic> json) =>
+      _$SignupResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SignupToJson(this);
+  Map<String, dynamic> toJson() => _$SignupResponseToJson(this);
 }

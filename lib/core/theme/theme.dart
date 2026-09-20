@@ -17,11 +17,12 @@ abstract class AppTheme {
       surface: AppColors.whiteColor,
       onSurface: AppColors.blackColor,
       tertiary: AppColors.successColor,
+      onTertiary: AppColors.placeHolderColor,
     ),
 
     appBarTheme: AppBarTheme(
       surfaceTintColor: Colors.transparent,
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.whiteColor,
       elevation: 0,
       centerTitle: false,
       titleTextStyle: AppTextStyles.textStyleMedium20.copyWith(
@@ -31,19 +32,25 @@ abstract class AppTheme {
     ),
 
     inputDecorationTheme: InputDecorationTheme(
-      border: OutlineInputBorder(borderRadius: BorderRadius.circular(4)),
+      filled: true,
+      fillColor: AppColors.placeHolderColor,
+      border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
-        borderSide: const BorderSide(color: AppColors.greyColor),
+        borderRadius: BorderRadius.circular(16),
+        borderSide: const BorderSide(color: AppColors.whiteColor),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(16),
+        borderSide: const BorderSide(color: AppColors.errorColor),
       ),
       errorBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(4),
+        borderRadius: BorderRadius.circular(16),
         borderSide: const BorderSide(color: AppColors.errorColor),
       ),
       hintStyle: AppTextStyles.textStyleRegular14.copyWith(
-        color: AppColors.placeHolderColor,
+        color: AppColors.secondaryColor,
       ),
-      labelStyle: AppTextStyles.textStyleRegular14.copyWith(
+      labelStyle: AppTextStyles.textStyleMedium12.copyWith(
         color: AppColors.greyColor,
       ),
       errorStyle: AppTextStyles.textStyleRegular14.copyWith(
@@ -85,6 +92,16 @@ abstract class AppTheme {
         textStyle: AppTextStyles.textStyleMedium16,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         side: const BorderSide(color: AppColors.primaryColor),
+      ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.zero,
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        backgroundColor: Colors.transparent,
+        foregroundColor: AppColors.primaryColor,
+        textStyle: AppTextStyles.textStyleBold16,
       ),
     ),
 

@@ -21,6 +21,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authSignUp => 'Sign up';
 
   @override
+  String get authWelcomeBack => 'Welcome back';
+
+  @override
+  String get authSignInToYourAccount => 'Sign in to your Shopora account';
+
+  @override
+  String get authCreateYourAccount => 'Create your account';
+
+  @override
+  String get authJoinShopora =>
+      'Join Shopora to unlock exclusive flash discounts, free priority express shipping, and member perks.';
+
+  @override
   String get authLoginNow => 'Login Now';
 
   @override
@@ -45,10 +58,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authUserName => 'Username';
 
   @override
-  String get authFirstName => 'First name';
-
-  @override
-  String get authLastName => 'Last name';
+  String get authFullName => 'Full Name';
 
   @override
   String get authGender => 'Gender';
@@ -75,7 +85,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authEnterYourUserName => 'Enter your username';
 
   @override
-  String get authEnterTheName => 'Enter the name';
+  String get authEnterFullName => 'Enter your full name';
 
   @override
   String get authEnterYourLastName => 'Enter your last name';
@@ -93,7 +103,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authDoNotHaveAnAccount => 'Don\'t have an account? ';
 
   @override
-  String get authAlreadyHaveAnAccount => 'Already have an account?';
+  String get authAlreadyHaveAnAccount => 'Already have an account? ';
 
   @override
   String get authSignInToExploreMore => 'Sign in to explore more';
@@ -179,13 +189,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authFieldRequired => 'This field is required';
 
   @override
-  String get authNameLength => 'Name must be at least 3 characters';
+  String get authFullNameRequired => 'Full Name is required';
 
   @override
-  String get authNameOnlyLetters => 'Name must contain letters only';
+  String get authNameLength => 'Full Name must be at least 3 characters';
 
   @override
-  String get authNameNoSpaces => 'Name cannot contain spaces';
+  String get authNameOnlyLetters => 'Full Name must contain letters only';
+
+  @override
+  String get authNameNoSpaces => 'Full Name cannot contain spaces';
 
   @override
   String get homeHome => 'Home';

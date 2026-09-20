@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 abstract class AppColors {
   AppColors._();
-  static const backgroundColor = Color(0xFFE8E8E8);
+  static const backgroundColor = Color(0xFFFFFFFF);
   static const whiteColor = Color(0xFFFFFFFF);
   static const blackColor = Color(0xFF000000);
 
@@ -13,7 +13,7 @@ abstract class AppColors {
   static const successColor = Color(0xFF0CB359);
 
   static const greyColor = Color(0xFFCDCDCD);
-  static const placeHolderColor = Color(0xFFA6A6A6);
+  static const placeHolderColor = Color(0xFFEEEEEE);
   static const dividerColor = Color(0xFFEAEAEA);
 
   static const loadingBackgroundColor = Colors.black26;

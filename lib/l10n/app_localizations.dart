@@ -122,6 +122,30 @@ abstract class AppLocalizations {
   /// **'Sign up'**
   String get authSignUp;
 
+  /// No description provided for @authWelcomeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome back'**
+  String get authWelcomeBack;
+
+  /// No description provided for @authSignInToYourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to your Shopora account'**
+  String get authSignInToYourAccount;
+
+  /// No description provided for @authCreateYourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create your account'**
+  String get authCreateYourAccount;
+
+  /// No description provided for @authJoinShopora.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Shopora to unlock exclusive flash discounts, free priority express shipping, and member perks.'**
+  String get authJoinShopora;
+
   /// No description provided for @authLoginNow.
   ///
   /// In en, this message translates to:
@@ -170,17 +194,11 @@ abstract class AppLocalizations {
   /// **'Username'**
   String get authUserName;
 
-  /// No description provided for @authFirstName.
+  /// No description provided for @authFullName.
   ///
   /// In en, this message translates to:
-  /// **'First name'**
-  String get authFirstName;
-
-  /// No description provided for @authLastName.
-  ///
-  /// In en, this message translates to:
-  /// **'Last name'**
-  String get authLastName;
+  /// **'Full Name'**
+  String get authFullName;
 
   /// No description provided for @authGender.
   ///
@@ -230,11 +248,11 @@ abstract class AppLocalizations {
   /// **'Enter your username'**
   String get authEnterYourUserName;
 
-  /// No description provided for @authEnterTheName.
+  /// No description provided for @authEnterFullName.
   ///
   /// In en, this message translates to:
-  /// **'Enter the name'**
-  String get authEnterTheName;
+  /// **'Enter your full name'**
+  String get authEnterFullName;
 
   /// No description provided for @authEnterYourLastName.
   ///
@@ -269,7 +287,7 @@ abstract class AppLocalizations {
   /// No description provided for @authAlreadyHaveAnAccount.
   ///
   /// In en, this message translates to:
-  /// **'Already have an account?'**
+  /// **'Already have an account? '**
   String get authAlreadyHaveAnAccount;
 
   /// No description provided for @authSignInToExploreMore.
@@ -428,22 +446,28 @@ abstract class AppLocalizations {
   /// **'This field is required'**
   String get authFieldRequired;
 
+  /// No description provided for @authFullNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Full Name is required'**
+  String get authFullNameRequired;
+
   /// No description provided for @authNameLength.
   ///
   /// In en, this message translates to:
-  /// **'Name must be at least 3 characters'**
+  /// **'Full Name must be at least 3 characters'**
   String get authNameLength;
 
   /// No description provided for @authNameOnlyLetters.
   ///
   /// In en, this message translates to:
-  /// **'Name must contain letters only'**
+  /// **'Full Name must contain letters only'**
   String get authNameOnlyLetters;
 
   /// No description provided for @authNameNoSpaces.
   ///
   /// In en, this message translates to:
-  /// **'Name cannot contain spaces'**
+  /// **'Full Name cannot contain spaces'**
   String get authNameNoSpaces;
 
   /// No description provided for @homeHome.

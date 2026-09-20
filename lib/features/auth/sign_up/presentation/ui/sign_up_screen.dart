@@ -1,40 +1,59 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopora/core/routes/app_routes.dart';
 import 'package:shopora/core/theme/app_colors.dart';
 import 'package:shopora/core/theme/app_text_styles.dart';
 import 'package:shopora/core/utils/app_validation.dart';
-import 'package:shopora/features/auth/sign_in/data/models/request/sign_in_data_request.dart';
-import 'package:shopora/features/auth/sign_in/presentation/cubit/sign_in_cubit.dart';
-import 'package:shopora/features/auth/sign_in/presentation/cubit/sign_in_state.dart';
+import 'package:shopora/features/auth/sign_up/data/models/request/sign_up_data_request.dart';
+import 'package:shopora/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
+import 'package:shopora/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
 import 'package:shopora/l10n/app_localizations.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
+    _phoneController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
 
-  void _onSignInPressed() {
+  void _onSignUpPressed() {
+    final state = context.read<SignUpCubit>().state;
+    if (!state.agreeTerms) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            '${AppLocalizations.of(context)!.authCreatingAnAccountYouAgreeToOur} ${AppLocalizations.of(context)!.authTermsAndConditions}',
+          ),
+          backgroundColor: AppColors.errorColor,
+        ),
+      );
+      return;
+    }
+
     if (_formKey.currentState?.validate() ?? false) {
-      context.read<SignInCubit>().signIn(
-        signInDataRequest: SignInDataRequest(
+      context.read<SignUpCubit>().signUp(
+        signUpDataRequest: SignUpDataRequest(
+          name: _nameController.text.trim(),
           email: _emailController.text.trim(),
           password: _passwordController.text,
+          rePassword: _passwordController.text,
+          phone: _phoneController.text.trim(),
         ),
       );
     }
@@ -45,26 +64,29 @@ class _SignInScreenState extends State<SignInScreen> {
     final loc = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: BlocConsumer<SignInCubit, SignInState>(
+      backgroundColor: AppColors.whiteColor,
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: BlocConsumer<SignUpCubit, SignUpState>(
         listenWhen: (previous, current) =>
-            previous.signInState != current.signInState,
+            previous.signUpState != current.signUpState,
         listener: (context, state) {
-          if (state.signInState.data != null) {
+          if (state.signUpState.data != null) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(loc.authLoginSuccessfully),
+                content: Text(loc.authSignUpSuccessMessage),
                 backgroundColor: AppColors.successColor,
               ),
             );
-            Navigator.pushNamedAndRemoveUntil(
-              context,
-              AppRoutes.homeScreen,
-              (route) => false,
-            );
-          } else if (state.signInState.errorMessage != null) {
+            Navigator.pop(context); // Go back to Sign In
+          } else if (state.signUpState.errorMessage != null) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
-                content: Text(state.signInState.errorMessage!),
+                content: Text(state.signUpState.errorMessage!),
                 backgroundColor: AppColors.errorColor,
               ),
             );
@@ -73,29 +95,53 @@ class _SignInScreenState extends State<SignInScreen> {
         builder: (context, state) {
           return SafeArea(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
               child: Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const SizedBox(height: 32),
                     Text(
-                      loc.authWelcomeBack,
-                      textAlign: TextAlign.center,
+                      loc.authCreateYourAccount,
                       style: AppTextStyles.textStyleSemiBold20.copyWith(
                         fontSize: 28,
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     Text(
-                      loc.authSignInToYourAccount,
-                      textAlign: TextAlign.center,
+                      loc.authJoinShopora,
                       style: AppTextStyles.textStyleRegular14.copyWith(
                         color: AppColors.secondaryColor,
                       ),
                     ),
                     const SizedBox(height: 32),
+
+                    // Full Name
+                    Text(
+                      loc.authFullName,
+                      style: AppTextStyles.textStyleMedium13.copyWith(
+                        color: AppColors.blackColor,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      controller: _nameController,
+                      validator: (value) => AppValidators.validateName(
+                        context,
+                        value,
+                        loc.authFullName,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: loc.authEnterFullName,
+                        prefixIcon: const Icon(
+                          Icons.person_outline,
+                          color: AppColors.secondaryColor,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Email
                     Text(
                       loc.authEmail,
                       style: AppTextStyles.textStyleMedium13.copyWith(
@@ -116,7 +162,32 @@ class _SignInScreenState extends State<SignInScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 24),
+                    const SizedBox(height: 16),
+
+                    // Phone Number
+                    Text(
+                      loc.authPhone,
+                      style: AppTextStyles.textStyleMedium13.copyWith(
+                        color: AppColors.blackColor,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    TextFormField(
+                      controller: _phoneController,
+                      validator: (value) =>
+                          AppValidators.validatePhoneNumber(context, value),
+                      keyboardType: TextInputType.phone,
+                      decoration: InputDecoration(
+                        hintText: loc.authEnterPhoneNumber,
+                        prefixIcon: const Icon(
+                          Icons.phone_outlined,
+                          color: AppColors.secondaryColor,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
+                    // Password
                     Text(
                       loc.authPassword,
                       style: AppTextStyles.textStyleMedium13.copyWith(
@@ -151,45 +222,51 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     const SizedBox(height: 16),
+
+                    // Checkbox
                     Row(
                       children: [
                         Checkbox(
-                          value: state.rememberMe,
+                          value: state.agreeTerms,
                           onChanged: (value) {
                             if (value != null) {
-                              context.read<SignInCubit>().toggleRememberMe(
+                              context.read<SignUpCubit>().toggleAgreeTerms(
                                 value,
                               );
                             }
                           },
                           activeColor: AppColors.primaryColor,
                         ),
-                        Text(
-                          loc.authRememberMe,
-                          style: AppTextStyles.textStyleMedium12.copyWith(
-                            color: AppColors.blackColor,
-                          ),
-                        ),
-                        const Spacer(),
-                        TextButton(
-                          onPressed: () {
-                            // Navigator.pushNamed(context, AppRoutes.forgetPasswordScreen);
-                          },
-                          child: Text(
-                            loc.authForgetPassword,
-                            style: AppTextStyles.textStyleSemiBold12.copyWith(
-                              color: AppColors.blackColor,
-                            ),
+                        Expanded(
+                          child: Wrap(
+                            children: [
+                              Text(
+                                '${loc.authCreatingAnAccountYouAgreeToOur} ',
+                                style: AppTextStyles.textStyleMedium12.copyWith(
+                                  color: AppColors.blackColor,
+                                ),
+                              ),
+                              Text(
+                                loc.authTermsAndConditions,
+                                style: AppTextStyles.textStyleSemiBold12
+                                    .copyWith(
+                                      color: AppColors.blackColor,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 18),
+
+                    // Sign Up Button
                     ElevatedButton(
-                      onPressed: state.signInState.isLoading
+                      onPressed: state.signUpState.isLoading
                           ? null
-                          : _onSignInPressed,
-                      child: state.signInState.isLoading
+                          : _onSignUpPressed,
+                      child: state.signUpState.isLoading
                           ? const SizedBox(
                               width: 24,
                               height: 24,
@@ -201,30 +278,29 @@ class _SignInScreenState extends State<SignInScreen> {
                           : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(loc.authSignIn),
+                                Text(loc.authCreateYourAccount),
                                 const SizedBox(width: 8),
                                 const Icon(Icons.arrow_forward),
                               ],
                             ),
                     ),
                     const SizedBox(height: 16),
+
+                    // Already have an account
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          loc.authDoNotHaveAnAccount,
+                          loc.authAlreadyHaveAnAccount,
                           style: AppTextStyles.textStyleRegular14.copyWith(
                             color: AppColors.secondaryColor,
                           ),
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(
-                              context,
-                              AppRoutes.signUpScreen,
-                            );
+                            Navigator.pop(context);
                           },
-                          child: Text(loc.authSignUp),
+                          child: Text(loc.authLogin),
                         ),
                       ],
                     ),
