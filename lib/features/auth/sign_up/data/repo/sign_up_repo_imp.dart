@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopora/config/base_response/base_response.dart';
-import 'package:shopora/config/security_storage/security_storage.dart';
 import 'package:shopora/core/errors/failures.dart';
 import 'package:shopora/core/values/api_endpoints.dart';
 import 'package:shopora/features/auth/sign_up/data/models/request/sign_up_data_request.dart';

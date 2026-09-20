@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopora/core/theme/app_colors.dart';
 import 'package:shopora/core/theme/app_text_styles.dart';
 import 'package:shopora/core/utils/app_validation.dart';
+import 'package:shopora/core/shared_widgets/custom_text_field_with_label.dart';
+import 'package:shopora/core/shared_widgets/custom_elevated_button.dart';
 import 'package:shopora/features/auth/sign_up/data/models/request/sign_up_data_request.dart';
 import 'package:shopora/features/auth/sign_up/presentation/cubit/sign_up_cubit.dart';
 import 'package:shopora/features/auth/sign_up/presentation/cubit/sign_up_state.dart';
@@ -21,7 +23,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+
   bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   void dispose() {
@@ -29,6 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _emailController.dispose();
     _phoneController.dispose();
     _passwordController.dispose();
+    _confirmPasswordController.dispose();
     super.dispose();
   }
 
@@ -52,7 +59,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           name: _nameController.text.trim(),
           email: _emailController.text.trim(),
           password: _passwordController.text,
-          rePassword: _passwordController.text,
+          rePassword: _confirmPasswordController.text,
           phone: _phoneController.text.trim(),
         ),
       );
@@ -116,114 +123,92 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const SizedBox(height: 32),
 
-                    // Full Name
-                    Text(
-                      loc.authFullName,
-                      style: AppTextStyles.textStyleMedium13.copyWith(
-                        color: AppColors.blackColor,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
+                    CustomTextFieldWithLabel(
+                      label: loc.authFullName,
+                      hintText: loc.authHintFirstNameText,
+                      prefixIcon: Icons.person_outline,
                       controller: _nameController,
                       validator: (value) => AppValidators.validateName(
                         context,
                         value,
                         loc.authFullName,
                       ),
-                      decoration: InputDecoration(
-                        hintText: loc.authEnterFullName,
-                        prefixIcon: const Icon(
-                          Icons.person_outline,
-                          color: AppColors.secondaryColor,
-                        ),
-                      ),
                     ),
                     const SizedBox(height: 16),
 
-                    // Email
-                    Text(
-                      loc.authEmail,
-                      style: AppTextStyles.textStyleMedium13.copyWith(
-                        color: AppColors.blackColor,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
+                    CustomTextFieldWithLabel(
+                      label: loc.authEmail,
+                      hintText: loc.authEnterYourEmail,
+                      prefixIcon: Icons.email_outlined,
                       controller: _emailController,
                       validator: (value) =>
                           AppValidators.validateEmail(context, value),
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintText: loc.authEnterYourEmail,
-                        prefixIcon: const Icon(
-                          Icons.email_outlined,
-                          color: AppColors.secondaryColor,
-                        ),
-                      ),
                     ),
                     const SizedBox(height: 16),
 
-                    // Phone Number
-                    Text(
-                      loc.authPhone,
-                      style: AppTextStyles.textStyleMedium13.copyWith(
-                        color: AppColors.blackColor,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
+                    CustomTextFieldWithLabel(
+                      label: loc.authPhone,
+                      hintText: loc.authEnterPhoneNumber,
+                      prefixIcon: Icons.phone_outlined,
                       controller: _phoneController,
                       validator: (value) =>
                           AppValidators.validatePhoneNumber(context, value),
                       keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        hintText: loc.authEnterPhoneNumber,
-                        prefixIcon: const Icon(
-                          Icons.phone_outlined,
-                          color: AppColors.secondaryColor,
-                        ),
-                      ),
                     ),
                     const SizedBox(height: 16),
 
-                    // Password
-                    Text(
-                      loc.authPassword,
-                      style: AppTextStyles.textStyleMedium13.copyWith(
-                        color: AppColors.blackColor,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
+                    CustomTextFieldWithLabel(
+                      label: loc.authPassword,
+                      hintText: loc.authEnterPassword,
+                      prefixIcon: Icons.lock_outline,
                       controller: _passwordController,
                       validator: (value) =>
                           AppValidators.validatePassword(context, value),
                       obscureText: _obscurePassword,
-                      decoration: InputDecoration(
-                        hintText: loc.authEnterYourPassword,
-                        prefixIcon: const Icon(
-                          Icons.lock_outline,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
                           color: AppColors.secondaryColor,
                         ),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscurePassword
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
-                            color: AppColors.secondaryColor,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _obscurePassword = !_obscurePassword;
-                            });
-                          },
-                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
                       ),
                     ),
                     const SizedBox(height: 16),
 
-                    // Checkbox
+                    CustomTextFieldWithLabel(
+                      label: loc.authConfirmPassword,
+                      hintText: loc.authEnterPassword,
+                      prefixIcon: Icons.lock_outline,
+                      controller: _confirmPasswordController,
+                      validator: (value) => AppValidators.confirmPassword(
+                        context,
+                        _passwordController.text,
+                        value,
+                      ),
+                      obscureText: _obscureConfirmPassword,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureConfirmPassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
+                          color: AppColors.secondaryColor,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureConfirmPassword = !_obscureConfirmPassword;
+                          });
+                        },
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+
                     Row(
                       children: [
                         Checkbox(
@@ -259,34 +244,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 18),
+                    const SizedBox(height: 32),
 
-                    // Sign Up Button
-                    ElevatedButton(
-                      onPressed: state.signUpState.isLoading
-                          ? null
-                          : _onSignUpPressed,
-                      child: state.signUpState.isLoading
-                          ? const SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: CircularProgressIndicator(
-                                color: AppColors.whiteColor,
-                                strokeWidth: 2,
-                              ),
-                            )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(loc.authCreateYourAccount),
-                                const SizedBox(width: 8),
-                                const Icon(Icons.arrow_forward),
-                              ],
-                            ),
+                    CustomElevatedButton(
+                      isLoading: state.signUpState.isLoading,
+                      onPressed: _onSignUpPressed,
+                      text: loc.authCreateYourAccount,
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 48),
 
-                    // Already have an account
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -300,7 +266,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: Text(loc.authLogin),
+                          child: Text(
+                            loc.authLogin,
+                            style: AppTextStyles.textStyleSemiBold12.copyWith(
+                              color: AppColors.primaryColor,
+                            ),
+                          ),
                         ),
                       ],
                     ),

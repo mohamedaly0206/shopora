@@ -27,7 +27,7 @@ class SignInCubit extends Cubit<SignInState> {
     );
     switch (response) {
       case SuccessBaseResponse<SignInResponse>():
-        final token = response.data?.token;
+        final token = response.data.token;
         if (token != null) {
           await _securityStorage.setSecuredString('token', token);
         }

@@ -81,13 +81,13 @@ abstract class AppValidators {
     final loc = AppLocalizations.of(context)!;
 
     if (value == null || value.trim().isEmpty) {
-      return '${loc.authFullNameRequired}';
+      return loc.authFullNameRequired;
     }
 
     final trimmedValue = value.trim();
 
     if (trimmedValue.length < 3) {
-      return '${loc.authNameLength}';
+      return loc.authNameLength;
     }
 
     return null;

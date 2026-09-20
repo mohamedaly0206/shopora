@@ -4,6 +4,8 @@ import 'package:shopora/core/routes/app_routes.dart';
 import 'package:shopora/core/theme/app_colors.dart';
 import 'package:shopora/core/theme/app_text_styles.dart';
 import 'package:shopora/core/utils/app_validation.dart';
+import 'package:shopora/core/shared_widgets/custom_text_field_with_label.dart';
+import 'package:shopora/core/shared_widgets/custom_elevated_button.dart';
 import 'package:shopora/features/auth/sign_in/data/models/request/sign_in_data_request.dart';
 import 'package:shopora/features/auth/sign_in/presentation/cubit/sign_in_cubit.dart';
 import 'package:shopora/features/auth/sign_in/presentation/cubit/sign_in_state.dart';
@@ -96,60 +98,40 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     ),
                     const SizedBox(height: 32),
-                    Text(
-                      loc.authEmail,
-                      style: AppTextStyles.textStyleMedium13.copyWith(
-                        color: AppColors.blackColor,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
+                    
+                    CustomTextFieldWithLabel(
+                      label: loc.authEmail,
+                      hintText: loc.authEnterYourEmail,
+                      prefixIcon: Icons.email_outlined,
                       controller: _emailController,
-                      validator: (value) =>
-                          AppValidators.validateEmail(context, value),
+                      validator: (value) => AppValidators.validateEmail(context, value),
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        hintText: loc.authEnterYourEmail,
-                        prefixIcon: const Icon(
-                          Icons.email_outlined,
-                          color: AppColors.secondaryColor,
-                        ),
-                      ),
                     ),
+                    
                     const SizedBox(height: 24),
-                    Text(
-                      loc.authPassword,
-                      style: AppTextStyles.textStyleMedium13.copyWith(
-                        color: AppColors.blackColor,
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextFormField(
+                    
+                    CustomTextFieldWithLabel(
+                      label: loc.authPassword,
+                      hintText: loc.authEnterYourPassword,
+                      prefixIcon: Icons.lock_outline,
                       controller: _passwordController,
-                      validator: (value) =>
-                          AppValidators.validatePassword(context, value),
+                      validator: (value) => AppValidators.validatePassword(context, value),
                       obscureText: _obscurePassword,
-                      decoration: InputDecoration(
-                        hintText: loc.authEnterYourPassword,
-                        prefixIcon: const Icon(
-                          Icons.lock_outline,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscurePassword
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
                           color: AppColors.secondaryColor,
                         ),
-                        suffixIcon: IconButton(
-                          icon: Icon(
-                            _obscurePassword
-                                ? Icons.visibility_off_outlined
-                                : Icons.visibility_outlined,
-                            color: AppColors.secondaryColor,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _obscurePassword = !_obscurePassword;
-                            });
-                          },
-                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscurePassword = !_obscurePassword;
+                          });
+                        },
                       ),
                     ),
+                    
                     const SizedBox(height: 16),
                     Row(
                       children: [
@@ -185,28 +167,13 @@ class _SignInScreenState extends State<SignInScreen> {
                       ],
                     ),
                     const SizedBox(height: 18),
-                    ElevatedButton(
-                      onPressed: state.signInState.isLoading
-                          ? null
-                          : _onSignInPressed,
-                      child: state.signInState.isLoading
-                          ? const SizedBox(
-                              width: 24,
-                              height: 24,
-                              child: CircularProgressIndicator(
-                                color: AppColors.whiteColor,
-                                strokeWidth: 2,
-                              ),
-                            )
-                          : Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(loc.authSignIn),
-                                const SizedBox(width: 8),
-                                const Icon(Icons.arrow_forward),
-                              ],
-                            ),
+                    
+                    CustomElevatedButton(
+                      isLoading: state.signInState.isLoading,
+                      onPressed: _onSignInPressed,
+                      text: loc.authSignIn,
                     ),
+                    
                     const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
