@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopora/core/routes/app_routes.dart';
-import 'package:shopora/core/theme/app_colors.dart';
 import 'package:shopora/core/theme/app_text_styles.dart';
-import 'package:shopora/core/utils/app_validation.dart';
+import 'package:shopora/core/utils/app_toaster/app_toaster.dart';
+import 'package:shopora/core/utils/validation/app_validation.dart';
 import 'package:shopora/core/shared_widgets/custom_text_field_with_label.dart';
 import 'package:shopora/core/shared_widgets/custom_elevated_button.dart';
-import 'package:shopora/features/auth/sign_in/data/models/request/sign_in_data_request.dart';
+import 'package:shopora/features/auth/sign_in/domain/entities/request/sign_in_data_request_entity.dart';
 import 'package:shopora/features/auth/sign_in/presentation/cubit/sign_in_cubit.dart';
 import 'package:shopora/features/auth/sign_in/presentation/cubit/sign_in_state.dart';
 import 'package:shopora/l10n/app_localizations.dart';
@@ -34,7 +34,7 @@ class _SignInScreenState extends State<SignInScreen> {
   void _onSignInPressed() {
     if (_formKey.currentState?.validate() ?? false) {
       context.read<SignInCubit>().signIn(
-        signInDataRequest: SignInDataRequest(
+        signInDataRequest: SignInDataRequestEntity(
           email: _emailController.text.trim(),
           password: _passwordController.text,
         ),
@@ -45,6 +45,7 @@ class _SignInScreenState extends State<SignInScreen> {
   @override
   Widget build(BuildContext context) {
     final loc = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: BlocConsumer<SignInCubit, SignInState>(
@@ -52,24 +53,14 @@ class _SignInScreenState extends State<SignInScreen> {
             previous.signInState != current.signInState,
         listener: (context, state) {
           if (state.signInState.data != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(loc.authLoginSuccessfully),
-                backgroundColor: AppColors.successColor,
-              ),
-            );
+            AppToastr.success(loc.authLoginSuccessfully);
             Navigator.pushNamedAndRemoveUntil(
               context,
               AppRoutes.homeScreen,
               (route) => false,
             );
           } else if (state.signInState.errorMessage != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(state.signInState.errorMessage!),
-                backgroundColor: AppColors.errorColor,
-              ),
-            );
+            AppToastr.error(state.signInState.errorMessage!);
           }
         },
         builder: (context, state) {
@@ -94,35 +85,41 @@ class _SignInScreenState extends State<SignInScreen> {
                       loc.authSignInToYourAccount,
                       textAlign: TextAlign.center,
                       style: AppTextStyles.textStyleRegular14.copyWith(
-                        color: AppColors.secondaryColor,
+                        color: theme.colorScheme.secondary,
                       ),
                     ),
                     const SizedBox(height: 32),
-                    
+
                     CustomTextFieldWithLabel(
                       label: loc.authEmail,
                       hintText: loc.authEnterYourEmail,
                       prefixIcon: Icons.email_outlined,
                       controller: _emailController,
-                      validator: (value) => AppValidators.validateEmail(context, value),
+                      validator: (value) =>
+                          AppValidators.validateEmail(context, value),
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    
+
                     const SizedBox(height: 24),
-                    
+
                     CustomTextFieldWithLabel(
                       label: loc.authPassword,
                       hintText: loc.authEnterYourPassword,
                       prefixIcon: Icons.lock_outline,
                       controller: _passwordController,
-                      validator: (value) => AppValidators.validatePassword(context, value),
+                      validator: (value) =>
+                          AppValidators.validateEmptyTextFormField(
+                            context,
+                            value,
+                            loc.authPassword,
+                          ),
                       obscureText: _obscurePassword,
                       suffixIcon: IconButton(
                         icon: Icon(
                           _obscurePassword
                               ? Icons.visibility_off_outlined
                               : Icons.visibility_outlined,
-                          color: AppColors.secondaryColor,
+                          color: theme.colorScheme.secondary,
                         ),
                         onPressed: () {
                           setState(() {
@@ -131,7 +128,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                       ),
                     ),
-                    
+
                     const SizedBox(height: 16),
                     Row(
                       children: [
@@ -144,13 +141,11 @@ class _SignInScreenState extends State<SignInScreen> {
                               );
                             }
                           },
-                          activeColor: AppColors.primaryColor,
+                          activeColor: theme.colorScheme.primary,
                         ),
                         Text(
                           loc.authRememberMe,
-                          style: AppTextStyles.textStyleMedium12.copyWith(
-                            color: AppColors.blackColor,
-                          ),
+                          style: theme.textTheme.bodySmall,
                         ),
                         const Spacer(),
                         TextButton(
@@ -159,21 +154,21 @@ class _SignInScreenState extends State<SignInScreen> {
                           },
                           child: Text(
                             loc.authForgetPassword,
-                            style: AppTextStyles.textStyleSemiBold12.copyWith(
-                              color: AppColors.blackColor,
+                            style: theme.textTheme.titleSmall?.copyWith(
+                              color: theme.colorScheme.primary,
                             ),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 18),
-                    
+
                     CustomElevatedButton(
                       isLoading: state.signInState.isLoading,
                       onPressed: _onSignInPressed,
                       text: loc.authSignIn,
                     ),
-                    
+
                     const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -181,7 +176,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         Text(
                           loc.authDoNotHaveAnAccount,
                           style: AppTextStyles.textStyleRegular14.copyWith(
-                            color: AppColors.secondaryColor,
+                            color: theme.colorScheme.secondary,
                           ),
                         ),
                         TextButton(

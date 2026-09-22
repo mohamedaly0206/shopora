@@ -2,44 +2,43 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shopora/config/base_response/base_response.dart';
 import 'package:shopora/config/base_state/base_state.dart';
-import 'package:shopora/features/auth/sign_in/data/models/request/sign_in_data_request.dart';
-import 'package:shopora/features/auth/sign_in/data/models/response/sign_in_response.dart';
-import 'package:shopora/features/auth/sign_in/data/repo/sign_in_repo_contract.dart';
+import 'package:shopora/features/auth/sign_in/domain/entities/request/sign_in_data_request_entity.dart';
+import 'package:shopora/features/auth/sign_in/domain/entities/response/sign_in_response_entity.dart';
+import 'package:shopora/features/auth/sign_in/domain/use_cases/sign_in_use_case.dart';
 import 'package:shopora/features/auth/sign_in/presentation/cubit/sign_in_state.dart';
-import 'package:shopora/config/security_storage/security_storage.dart';
 
 @injectable
 class SignInCubit extends Cubit<SignInState> {
-  final SignInRepoContract _signInRepoContract;
-  final SecurityStorage _securityStorage;
+  final SignInUseCase _signInUseCase;
 
-  SignInCubit(this._signInRepoContract, this._securityStorage)
-    : super(const SignInState());
+  SignInCubit(this._signInUseCase) : super(const SignInState());
 
   void toggleRememberMe(bool value) {
     emit(state.copyWith(rememberMe: value));
   }
 
-  Future<void> signIn({required SignInDataRequest signInDataRequest}) async {
+  Future<void> signIn({
+    required SignInDataRequestEntity signInDataRequest,
+  }) async {
     emit(state.copyWith(signInState: const BaseState(isLoading: true)));
-    final response = await _signInRepoContract.signIn(
+    final response = await _signInUseCase.call(
       signInDataRequest: signInDataRequest,
     );
-    switch (response) {
-      case SuccessBaseResponse<SignInResponse>():
-        final token = response.data.token;
-        if (token != null) {
-          await _securityStorage.setSecuredString('token', token);
-        }
-        emit(state.copyWith(signInState: BaseState(data: response.data)));
-        break;
-      case ErrorBaseResponse<SignInResponse>():
-        emit(
-          state.copyWith(
-            signInState: BaseState(errorMessage: response.errorMessage),
+    if (response is SuccessBaseResponse<SignInResponseEntity>) {
+      emit(
+        state.copyWith(
+          signInState: BaseState(isLoading: false, data: response.data),
+        ),
+      );
+    } else if (response is ErrorBaseResponse<SignInResponseEntity>) {
+      emit(
+        state.copyWith(
+          signInState: BaseState(
+            isLoading: false,
+            errorMessage: response.errorMessage,
           ),
-        );
-        break;
+        ),
+      );
     }
   }
 }

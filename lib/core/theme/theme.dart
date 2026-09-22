@@ -108,7 +108,7 @@ abstract class AppTheme {
     textTheme: const TextTheme(
       titleLarge: AppTextStyles.textStyleMedium20,
       titleMedium: AppTextStyles.textStyleMedium18,
-      titleSmall: AppTextStyles.textStyleSemiBold12,
+      titleSmall: AppTextStyles.textStyleBold12,
 
       headlineLarge: AppTextStyles.textStyleSemiBold20,
       headlineMedium: AppTextStyles.textStyleMedium16,

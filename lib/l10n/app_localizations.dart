@@ -338,6 +338,12 @@ abstract class AppLocalizations {
   /// **'Terms & Conditions'**
   String get authTermsAndConditions;
 
+  /// No description provided for @authTermsAndConditionsAlert.
+  ///
+  /// In en, this message translates to:
+  /// **'You must agree to our Terms & Conditions'**
+  String get authTermsAndConditionsAlert;
+
   /// No description provided for @authEnterEmail.
   ///
   /// In en, this message translates to:
@@ -389,7 +395,7 @@ abstract class AppLocalizations {
   /// No description provided for @authResetPasswordHint.
   ///
   /// In en, this message translates to:
-  /// **'Password must contain at least 8 characters,\nincluding uppercase, lowercase, number and symbol'**
+  /// **'Password must contain at least 6 characters,\nincluding uppercase, lowercase, number and symbol'**
   String get authResetPasswordHint;
 
   /// No description provided for @authPasswordRequired.
@@ -443,7 +449,7 @@ abstract class AppLocalizations {
   /// No description provided for @authFieldRequired.
   ///
   /// In en, this message translates to:
-  /// **'This field is required'**
+  /// **'is required'**
   String get authFieldRequired;
 
   /// No description provided for @authFullNameRequired.

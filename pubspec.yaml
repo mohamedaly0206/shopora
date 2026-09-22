@@ -44,6 +44,7 @@ dependencies:
     sdk: flutter
   equatable: ^3.0.0
   json_annotation: ^4.12.0
+  toastr_flutter: ^2.5.3
 
 dev_dependencies:
   flutter_test:

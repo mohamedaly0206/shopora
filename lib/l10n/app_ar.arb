@@ -44,6 +44,7 @@
 
   "authCreatingAnAccountYouAgreeToOur": "بإنشاء حساب، فإنك توافق على",
   "authTermsAndConditions": "الشروط والأحكام",
+  "authTermsAndConditionsAlert": "يجب عليك الموافقة على الشروط والأحكام",
 
   "authEnterEmail": "يرجى إدخال بريدك الإلكتروني المرتبط بـ\nحسابك",
   "authEmailVerification": "التحقق من البريد الإلكتروني",
@@ -66,7 +67,7 @@
   "authPhoneRequired": "رقم الهاتف مطلوب",
   "authPhoneInvalid": "رقم هاتف مصري غير صالح",
 
-  "authFieldRequired": "هذا الحقل مطلوب",
+  "authFieldRequired": "مطلوب",
   "authFullNameRequired":"الاسم بالكامل مطلوب",
   "authNameLength": "يجب أن يكون الاسم 3 أحرف على الأقل",
   "authNameOnlyLetters": "يجب أن يحتوي الاسم على أحرف فقط",

@@ -131,6 +131,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authTermsAndConditions => 'Terms & Conditions';
 
   @override
+  String get authTermsAndConditionsAlert =>
+      'You must agree to our Terms & Conditions';
+
+  @override
   String get authEnterEmail =>
       'Please enter your email associated with\nyour account';
 
@@ -158,7 +162,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authResetPasswordHint =>
-      'Password must contain at least 8 characters,\nincluding uppercase, lowercase, number and symbol';
+      'Password must contain at least 6 characters,\nincluding uppercase, lowercase, number and symbol';
 
   @override
   String get authPasswordRequired => 'Password is required';
@@ -186,7 +190,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authPhoneInvalid => 'Invalid Egyptian phone number';
 
   @override
-  String get authFieldRequired => 'This field is required';
+  String get authFieldRequired => 'is required';
 
   @override
   String get authFullNameRequired => 'Full Name is required';

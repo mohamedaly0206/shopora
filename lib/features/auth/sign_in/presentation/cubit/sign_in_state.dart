@@ -1,18 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:shopora/config/base_state/base_state.dart';
-import 'package:shopora/features/auth/sign_in/data/models/response/sign_in_response.dart';
+import 'package:shopora/features/auth/sign_in/domain/entities/response/sign_in_response_entity.dart';
 
 class SignInState extends Equatable {
-  final BaseState<SignInResponse> signInState;
+  final BaseState<SignInResponseEntity> signInState;
   final bool rememberMe;
 
   const SignInState({
-    this.signInState = const BaseState<SignInResponse>(),
+    this.signInState = const BaseState<SignInResponseEntity>(),
     this.rememberMe = false,
   });
 
   SignInState copyWith({
-    BaseState<SignInResponse>? signInState,
+    BaseState<SignInResponseEntity>? signInState,
     bool? rememberMe,
   }) {
     return SignInState(

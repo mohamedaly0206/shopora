@@ -131,6 +131,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authTermsAndConditions => 'الشروط والأحكام';
 
   @override
+  String get authTermsAndConditionsAlert =>
+      'يجب عليك الموافقة على الشروط والأحكام';
+
+  @override
   String get authEnterEmail => 'يرجى إدخال بريدك الإلكتروني المرتبط بـ\nحسابك';
 
   @override
@@ -186,7 +190,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get authPhoneInvalid => 'رقم هاتف مصري غير صالح';
 
   @override
-  String get authFieldRequired => 'هذا الحقل مطلوب';
+  String get authFieldRequired => 'مطلوب';
 
   @override
   String get authFullNameRequired => 'الاسم بالكامل مطلوب';

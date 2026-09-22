@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../l10n/app_localizations.dart';
+import '../../../l10n/app_localizations.dart';
 
 abstract class AppValidators {
   AppValidators._();
@@ -27,12 +27,12 @@ abstract class AppValidators {
       return loc.authPasswordRequired;
     }
 
-    if (password.length < 8) {
+    if (password.length < 6) {
       return loc.authPasswordLength;
     }
 
     final passwordRegex = RegExp(
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$',
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$',
     );
 
     if (!passwordRegex.hasMatch(password)) {
@@ -63,11 +63,12 @@ abstract class AppValidators {
   static String? validateEmptyTextFormField(
     BuildContext context,
     String? value,
+    String fieldName,
   ) {
     final loc = AppLocalizations.of(context)!;
 
     if (value == null || value.trim().isEmpty) {
-      return loc.authFieldRequired;
+      return '$fieldName ${loc.authFieldRequired}';
     }
 
     return null;
@@ -103,7 +104,7 @@ abstract class AppValidators {
       return loc.authPhoneRequired;
     }
 
-    final phoneRegex = RegExp(r'^\+20(10|11|12|15)[0-9]{8}$');
+    final phoneRegex = RegExp(r'^01[0125][0-9]{8}$');
 
     if (!phoneRegex.hasMatch(phoneNumber.trim())) {
       return loc.authPhoneInvalid;

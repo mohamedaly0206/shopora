@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shopora/core/theme/app_colors.dart';
-import 'package:shopora/core/theme/app_text_styles.dart';
 
 class CustomTextFieldWithLabel extends StatelessWidget {
   final String label;
@@ -26,15 +24,11 @@ class CustomTextFieldWithLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: AppTextStyles.textStyleMedium13.copyWith(
-            color: AppColors.blackColor,
-          ),
-        ),
+        Text(label, style: theme.textTheme.displaySmall),
         const SizedBox(height: 8),
         TextFormField(
           controller: controller,
@@ -43,7 +37,7 @@ class CustomTextFieldWithLabel extends StatelessWidget {
           obscureText: obscureText,
           decoration: InputDecoration(
             hintText: hintText,
-            prefixIcon: Icon(prefixIcon, color: AppColors.secondaryColor),
+            prefixIcon: Icon(prefixIcon, color: theme.colorScheme.secondary),
             suffixIcon: suffixIcon,
           ),
         ),

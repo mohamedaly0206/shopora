@@ -44,6 +44,7 @@
 
   "authCreatingAnAccountYouAgreeToOur": "By creating an account, you agree to our",
   "authTermsAndConditions": "Terms & Conditions",
+  "authTermsAndConditionsAlert": "You must agree to our Terms & Conditions",
 
   "authEnterEmail": "Please enter your email associated with\nyour account",
   "authEmailVerification": "Email Verification",
@@ -54,7 +55,7 @@
   "authConfirm": "Confirm",
 
   "authResetPassword": "Reset Password",
-  "authResetPasswordHint": "Password must contain at least 8 characters,\nincluding uppercase, lowercase, number and symbol",
+  "authResetPasswordHint": "Password must contain at least 6 characters,\nincluding uppercase, lowercase, number and symbol",
 
   "authPasswordRequired": "Password is required",
   "authPasswordLength": "Password must be at least 8 characters",
@@ -66,7 +67,7 @@
   "authPhoneRequired": "Phone number is required",
   "authPhoneInvalid": "Invalid Egyptian phone number",
 
-  "authFieldRequired": "This field is required",
+  "authFieldRequired": "is required",
   "authFullNameRequired":"Full Name is required",
   "authNameLength": "Full Name must be at least 3 characters",
   "authNameOnlyLetters": "Full Name must contain letters only",
