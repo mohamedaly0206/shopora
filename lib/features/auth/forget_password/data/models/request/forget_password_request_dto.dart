@@ -15,8 +15,6 @@ class ForgetPasswordRequestDto {
   Map<String, dynamic> toJson() => _$ForgetPasswordRequestDtoToJson(this);
 
   factory ForgetPasswordRequestDto.fromDomain(
-          ForgetPasswordRequestEntity entity) =>
-      ForgetPasswordRequestDto(
-        email: entity.email,
-      );
+    ForgetPasswordRequestEntity entity,
+  ) => ForgetPasswordRequestDto(email: entity.email);
 }

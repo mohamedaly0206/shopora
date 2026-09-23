@@ -16,9 +16,9 @@ class ResetPasswordRequestDto {
   Map<String, dynamic> toJson() => _$ResetPasswordRequestDtoToJson(this);
 
   factory ResetPasswordRequestDto.fromDomain(
-          ResetPasswordRequestEntity entity) =>
-      ResetPasswordRequestDto(
-        email: entity.email,
-        newPassword: entity.newPassword,
-      );
+    ResetPasswordRequestEntity entity,
+  ) => ResetPasswordRequestDto(
+    email: entity.email,
+    newPassword: entity.newPassword,
+  );
 }

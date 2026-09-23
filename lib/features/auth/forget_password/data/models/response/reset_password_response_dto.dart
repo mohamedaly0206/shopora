@@ -7,16 +7,13 @@ part 'reset_password_response_dto.g.dart';
 class ResetPasswordResponseDto {
   final String? token;
 
-  const ResetPasswordResponseDto({
-    this.token,
-  });
+  const ResetPasswordResponseDto({this.token});
 
   factory ResetPasswordResponseDto.fromJson(Map<String, dynamic> json) =>
       _$ResetPasswordResponseDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ResetPasswordResponseDtoToJson(this);
 
-  ResetPasswordResponseEntity toDomain() => ResetPasswordResponseEntity(
-        token: token,
-      );
+  ResetPasswordResponseEntity toDomain() =>
+      ResetPasswordResponseEntity(token: token);
 }

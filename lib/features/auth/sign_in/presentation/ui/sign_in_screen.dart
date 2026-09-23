@@ -150,7 +150,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         const Spacer(),
                         TextButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, AppRoutes.forgetPasswordScreen);
+                            Navigator.pushNamed(
+                              context,
+                              AppRoutes.forgetPasswordScreen,
+                            );
                           },
                           child: Text(
                             loc.authForgetPassword,

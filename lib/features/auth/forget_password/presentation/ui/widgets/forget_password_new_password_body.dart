@@ -90,8 +90,7 @@ class _ForgetPasswordNewPasswordBodyState
                 ),
                 onPressed: () {
                   setState(() {
-                    _obscureConfirmPassword =
-                        !_obscureConfirmPassword;
+                    _obscureConfirmPassword = !_obscureConfirmPassword;
                   });
                 },
               ),
@@ -101,11 +100,9 @@ class _ForgetPasswordNewPasswordBodyState
 
             BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
               listenWhen: (previous, current) =>
-                  previous.resetPasswordState !=
-                  current.resetPasswordState,
+                  previous.resetPasswordState != current.resetPasswordState,
               listener: (context, state) {
-                final errorMessage =
-                    state.resetPasswordState.errorMessage;
+                final errorMessage = state.resetPasswordState.errorMessage;
 
                 if (errorMessage != null) {
                   AppToastr.error(errorMessage);
@@ -113,9 +110,7 @@ class _ForgetPasswordNewPasswordBodyState
                 }
 
                 if (state.resetPasswordState.data != null) {
-                  AppToastr.success(
-                    loc.authResetPasswordSuccess,
-                  );
+                  AppToastr.success(loc.authResetPasswordSuccess);
 
                   Navigator.of(context).pushNamedAndRemoveUntil(
                     AppRoutes.signInScreen,
@@ -124,8 +119,7 @@ class _ForgetPasswordNewPasswordBodyState
                 }
               },
               builder: (context, state) {
-                final isLoading =
-                    state.resetPasswordState.isLoading;
+                final isLoading = state.resetPasswordState.isLoading;
 
                 return CustomElevatedButton(
                   text: loc.authContinue,
@@ -134,11 +128,9 @@ class _ForgetPasswordNewPasswordBodyState
                       ? null
                       : () {
                           if (_formKey.currentState!.validate()) {
-                            context
-                                .read<ForgetPasswordCubit>()
-                                .resetPassword(
-                                  _passwordController.text,
-                                );
+                            context.read<ForgetPasswordCubit>().resetPassword(
+                              _passwordController.text,
+                            );
                           }
                         },
                 );

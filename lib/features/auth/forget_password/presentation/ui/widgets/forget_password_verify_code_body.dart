@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shopora/core/shared_widgets/custom_elevated_button.dart';
 import 'package:shopora/core/utils/app_toaster/app_toaster.dart';
 import 'package:shopora/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
 import 'package:shopora/features/auth/forget_password/presentation/cubit/forget_password_state.dart';
@@ -32,8 +31,7 @@ class _ForgetPasswordVerifyCodeBodyState
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             BlocBuilder<ForgetPasswordCubit, ForgetPasswordState>(
-              buildWhen: (previous, current) =>
-                  previous.email != current.email,
+              buildWhen: (previous, current) => previous.email != current.email,
               builder: (context, state) {
                 return Text(
                   '${loc.authVerificationSubtitle} '
@@ -48,11 +46,9 @@ class _ForgetPasswordVerifyCodeBodyState
 
             BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
               listenWhen: (previous, current) =>
-                  previous.verifyResetCodeState !=
-                  current.verifyResetCodeState,
+                  previous.verifyResetCodeState != current.verifyResetCodeState,
               listener: (context, state) {
-                final errorMessage =
-                    state.verifyResetCodeState.errorMessage;
+                final errorMessage = state.verifyResetCodeState.errorMessage;
 
                 if (errorMessage != null) {
                   AppToastr.error(errorMessage);
@@ -63,9 +59,7 @@ class _ForgetPasswordVerifyCodeBodyState
                   state: state,
                   onSubmit: (code) {
                     if (!state.verifyResetCodeState.isLoading) {
-                      context
-                          .read<ForgetPasswordCubit>()
-                          .verifyResetCode(code);
+                      context.read<ForgetPasswordCubit>().verifyResetCode(code);
                     }
                   },
                 );
@@ -79,8 +73,7 @@ class _ForgetPasswordVerifyCodeBodyState
                   previous.forgetPasswordState.isLoading !=
                   current.forgetPasswordState.isLoading,
               builder: (context, state) {
-                final isLoading =
-                    state.forgetPasswordState.isLoading;
+                final isLoading = state.forgetPasswordState.isLoading;
 
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -96,8 +89,7 @@ class _ForgetPasswordVerifyCodeBodyState
                       onPressed: isLoading
                           ? null
                           : () {
-                              final cubit =
-                                  context.read<ForgetPasswordCubit>();
+                              final cubit = context.read<ForgetPasswordCubit>();
 
                               cubit.clearVerifyResetCodeState();
                               cubit.forgetPassword();
@@ -106,9 +98,7 @@ class _ForgetPasswordVerifyCodeBodyState
                           ? const SizedBox(
                               width: 16,
                               height: 16,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                              ),
+                              child: CircularProgressIndicator(strokeWidth: 2),
                             )
                           : Text(loc.authResendCode),
                     ),

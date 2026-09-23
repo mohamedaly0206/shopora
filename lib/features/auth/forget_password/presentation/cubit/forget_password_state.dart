@@ -13,7 +13,8 @@ class ForgetPasswordState extends Equatable {
 
   const ForgetPasswordState({
     this.forgetPasswordState = const BaseState<ForgetPasswordResponseEntity>(),
-    this.verifyResetCodeState = const BaseState<VerifyResetCodeResponseEntity>(),
+    this.verifyResetCodeState =
+        const BaseState<VerifyResetCodeResponseEntity>(),
     this.resetPasswordState = const BaseState<ResetPasswordResponseEntity>(),
     this.currentPage = 0,
     this.email = '',
@@ -37,10 +38,10 @@ class ForgetPasswordState extends Equatable {
 
   @override
   List<Object> get props => [
-        forgetPasswordState,
-        verifyResetCodeState,
-        resetPasswordState,
-        currentPage,
-        email,
-      ];
+    forgetPasswordState,
+    verifyResetCodeState,
+    resetPasswordState,
+    currentPage,
+    email,
+  ];
 }

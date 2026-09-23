@@ -8,18 +8,13 @@ class ForgetPasswordResponseDto {
   final String? statusMsg;
   final String? message;
 
-  const ForgetPasswordResponseDto({
-    this.statusMsg,
-    this.message,
-  });
+  const ForgetPasswordResponseDto({this.statusMsg, this.message});
 
   factory ForgetPasswordResponseDto.fromJson(Map<String, dynamic> json) =>
       _$ForgetPasswordResponseDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$ForgetPasswordResponseDtoToJson(this);
 
-  ForgetPasswordResponseEntity toDomain() => ForgetPasswordResponseEntity(
-        statusMsg: statusMsg,
-        message: message,
-      );
+  ForgetPasswordResponseEntity toDomain() =>
+      ForgetPasswordResponseEntity(statusMsg: statusMsg, message: message);
 }

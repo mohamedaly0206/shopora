@@ -7,16 +7,13 @@ part 'verify_reset_code_response_dto.g.dart';
 class VerifyResetCodeResponseDto {
   final String? status;
 
-  const VerifyResetCodeResponseDto({
-    this.status,
-  });
+  const VerifyResetCodeResponseDto({this.status});
 
   factory VerifyResetCodeResponseDto.fromJson(Map<String, dynamic> json) =>
       _$VerifyResetCodeResponseDtoFromJson(json);
 
   Map<String, dynamic> toJson() => _$VerifyResetCodeResponseDtoToJson(this);
 
-  VerifyResetCodeResponseEntity toDomain() => VerifyResetCodeResponseEntity(
-        status: status,
-      );
+  VerifyResetCodeResponseEntity toDomain() =>
+      VerifyResetCodeResponseEntity(status: status);
 }

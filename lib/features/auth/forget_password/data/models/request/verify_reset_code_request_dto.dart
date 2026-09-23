@@ -15,8 +15,6 @@ class VerifyResetCodeRequestDto {
   Map<String, dynamic> toJson() => _$VerifyResetCodeRequestDtoToJson(this);
 
   factory VerifyResetCodeRequestDto.fromDomain(
-          VerifyResetCodeRequestEntity entity) =>
-      VerifyResetCodeRequestDto(
-        resetCode: entity.resetCode,
-      );
+    VerifyResetCodeRequestEntity entity,
+  ) => VerifyResetCodeRequestDto(resetCode: entity.resetCode);
 }

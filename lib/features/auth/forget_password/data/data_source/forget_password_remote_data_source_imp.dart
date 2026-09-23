@@ -18,8 +18,9 @@ class ForgetPasswordRemoteDataSourceImp
   ForgetPasswordRemoteDataSourceImp(this._apiClient);
 
   @override
-  Future<BaseResponse<ForgetPasswordResponseDto>> forgetPassword(
-      {required ForgetPasswordRequestDto request}) async {
+  Future<BaseResponse<ForgetPasswordResponseDto>> forgetPassword({
+    required ForgetPasswordRequestDto request,
+  }) async {
     try {
       final response = await _apiClient.forgetPassword(request);
       return SuccessBaseResponse(data: response);
@@ -31,8 +32,9 @@ class ForgetPasswordRemoteDataSourceImp
   }
 
   @override
-  Future<BaseResponse<ResetPasswordResponseDto>> resetPassword(
-      {required ResetPasswordRequestDto request}) async {
+  Future<BaseResponse<ResetPasswordResponseDto>> resetPassword({
+    required ResetPasswordRequestDto request,
+  }) async {
     try {
       final response = await _apiClient.resetPassword(request);
       return SuccessBaseResponse(data: response);
@@ -44,8 +46,9 @@ class ForgetPasswordRemoteDataSourceImp
   }
 
   @override
-  Future<BaseResponse<VerifyResetCodeResponseDto>> verifyResetCode(
-      {required VerifyResetCodeRequestDto request}) async {
+  Future<BaseResponse<VerifyResetCodeResponseDto>> verifyResetCode({
+    required VerifyResetCodeRequestDto request,
+  }) async {
     try {
       final response = await _apiClient.verifyResetCode(request);
       return SuccessBaseResponse(data: response);

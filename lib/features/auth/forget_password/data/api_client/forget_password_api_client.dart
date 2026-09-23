@@ -15,7 +15,8 @@ class ForgetPasswordApiClient {
   ForgetPasswordApiClient(this._dio);
 
   Future<ForgetPasswordResponseDto> forgetPassword(
-      ForgetPasswordRequestDto request) async {
+    ForgetPasswordRequestDto request,
+  ) async {
     final response = await _dio.post(
       ApiEndpoints.forgetPassword,
       data: request.toJson(),
@@ -24,7 +25,8 @@ class ForgetPasswordApiClient {
   }
 
   Future<VerifyResetCodeResponseDto> verifyResetCode(
-      VerifyResetCodeRequestDto request) async {
+    VerifyResetCodeRequestDto request,
+  ) async {
     final response = await _dio.post(
       ApiEndpoints.verifyResetCode,
       data: request.toJson(),
@@ -33,7 +35,8 @@ class ForgetPasswordApiClient {
   }
 
   Future<ResetPasswordResponseDto> resetPassword(
-      ResetPasswordRequestDto request) async {
+    ResetPasswordRequestDto request,
+  ) async {
     final response = await _dio.put(
       ApiEndpoints.resetPassword,
       data: request.toJson(),

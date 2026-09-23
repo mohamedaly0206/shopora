@@ -26,37 +26,19 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ) : super(const ForgetPasswordState());
 
   void updateCurrentPage(int page) {
-    emit(
-      state.copyWith(
-        currentPage: page,
-      ),
-    );
+    emit(state.copyWith(currentPage: page));
   }
 
   void updateEmail(String email) {
-    emit(
-      state.copyWith(
-        email: email,
-      ),
-    );
+    emit(state.copyWith(email: email));
   }
 
   void clearVerifyResetCodeState() {
-    emit(
-      state.copyWith(
-        verifyResetCodeState: const BaseState(),
-      ),
-    );
+    emit(state.copyWith(verifyResetCodeState: const BaseState()));
   }
 
   Future<void> forgetPassword() async {
-    emit(
-      state.copyWith(
-        forgetPasswordState: const BaseState(
-          isLoading: true,
-        ),
-      ),
-    );
+    emit(state.copyWith(forgetPasswordState: const BaseState(isLoading: true)));
 
     final response = await _forgetPasswordUseCase.call(
       forgetPasswordRequestEntity: ForgetPasswordRequestEntity(
@@ -67,15 +49,11 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
     if (response is SuccessBaseResponse<ForgetPasswordResponseEntity>) {
       emit(
         state.copyWith(
-          forgetPasswordState: BaseState(
-            isLoading: false,
-            data: response.data,
-          ),
+          forgetPasswordState: BaseState(isLoading: false, data: response.data),
           currentPage: 1,
         ),
       );
-    } else if (response
-        is ErrorBaseResponse<ForgetPasswordResponseEntity>) {
+    } else if (response is ErrorBaseResponse<ForgetPasswordResponseEntity>) {
       emit(
         state.copyWith(
           forgetPasswordState: BaseState(
@@ -89,11 +67,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
 
   Future<void> verifyResetCode(String code) async {
     emit(
-      state.copyWith(
-        verifyResetCodeState: const BaseState(
-          isLoading: true,
-        ),
-      ),
+      state.copyWith(verifyResetCodeState: const BaseState(isLoading: true)),
     );
 
     final response = await _verifyResetCodeUseCase.call(
@@ -102,8 +76,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       ),
     );
 
-    if (response
-        is SuccessBaseResponse<VerifyResetCodeResponseEntity>) {
+    if (response is SuccessBaseResponse<VerifyResetCodeResponseEntity>) {
       emit(
         state.copyWith(
           verifyResetCodeState: BaseState(
@@ -113,8 +86,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
           currentPage: 2,
         ),
       );
-    } else if (response
-        is ErrorBaseResponse<VerifyResetCodeResponseEntity>) {
+    } else if (response is ErrorBaseResponse<VerifyResetCodeResponseEntity>) {
       emit(
         state.copyWith(
           verifyResetCodeState: BaseState(
@@ -127,13 +99,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   }
 
   Future<void> resetPassword(String newPassword) async {
-    emit(
-      state.copyWith(
-        resetPasswordState: const BaseState(
-          isLoading: true,
-        ),
-      ),
-    );
+    emit(state.copyWith(resetPasswordState: const BaseState(isLoading: true)));
 
     final response = await _resetPasswordUseCase.call(
       resetPasswordRequestEntity: ResetPasswordRequestEntity(
@@ -142,18 +108,13 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
       ),
     );
 
-    if (response
-        is SuccessBaseResponse<ResetPasswordResponseEntity>) {
+    if (response is SuccessBaseResponse<ResetPasswordResponseEntity>) {
       emit(
         state.copyWith(
-          resetPasswordState: BaseState(
-            isLoading: false,
-            data: response.data,
-          ),
+          resetPasswordState: BaseState(isLoading: false, data: response.data),
         ),
       );
-    } else if (response
-        is ErrorBaseResponse<ResetPasswordResponseEntity>) {
+    } else if (response is ErrorBaseResponse<ResetPasswordResponseEntity>) {
       emit(
         state.copyWith(
           resetPasswordState: BaseState(
