@@ -165,6 +165,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Password must contain at least 6 characters,\nincluding uppercase, lowercase, number and symbol';
 
   @override
+  String get authPasswordResetSuccessfully => 'New password reset successfully';
+
+  @override
   String get authPasswordRequired => 'Password is required';
 
   @override
@@ -687,4 +690,44 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get networkServerDefaultError =>
       'Sorry, something went wrong. Please try again.';
+
+  @override
+  String get authForgetPasswordTitle => 'Forget Password';
+
+  @override
+  String get authForgetPasswordSubtitle =>
+      'Please enter your registered email address to receive a verification code.';
+
+  @override
+  String get authContinue => 'CONTINUE';
+
+  @override
+  String get authVerification => 'Verification';
+
+  @override
+  String get authVerificationSubtitle => 'We\'ve sent a verification code to';
+
+  @override
+  String get authVerificationHint => 'Enter the code below to continue.';
+
+  @override
+  String get authEnterDigitCode => 'Enter 6-digit code';
+
+  @override
+  String get authVerify => 'VERIFY';
+
+  @override
+  String get authResendCode => 'Resend code!';
+
+  @override
+  String get authCreateNewPassword => 'Create New Password';
+
+  @override
+  String get authResetCodeSent => 'Reset code sent to your email';
+
+  @override
+  String get authResetPasswordSuccess => 'Password reset successfully';
+
+  @override
+  String get authCodeVerified => 'Code verified successfully';
 }

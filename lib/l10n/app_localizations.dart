@@ -398,6 +398,12 @@ abstract class AppLocalizations {
   /// **'Password must contain at least 6 characters,\nincluding uppercase, lowercase, number and symbol'**
   String get authResetPasswordHint;
 
+  /// No description provided for @authPasswordResetSuccessfully.
+  ///
+  /// In en, this message translates to:
+  /// **'New password reset successfully'**
+  String get authPasswordResetSuccessfully;
+
   /// No description provided for @authPasswordRequired.
   ///
   /// In en, this message translates to:
@@ -1393,6 +1399,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sorry, something went wrong. Please try again.'**
   String get networkServerDefaultError;
+
+  /// No description provided for @authForgetPasswordTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forget Password'**
+  String get authForgetPasswordTitle;
+
+  /// No description provided for @authForgetPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your registered email address to receive a verification code.'**
+  String get authForgetPasswordSubtitle;
+
+  /// No description provided for @authContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'CONTINUE'**
+  String get authContinue;
+
+  /// No description provided for @authVerification.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification'**
+  String get authVerification;
+
+  /// No description provided for @authVerificationSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ve sent a verification code to'**
+  String get authVerificationSubtitle;
+
+  /// No description provided for @authVerificationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the code below to continue.'**
+  String get authVerificationHint;
+
+  /// No description provided for @authEnterDigitCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 6-digit code'**
+  String get authEnterDigitCode;
+
+  /// No description provided for @authVerify.
+  ///
+  /// In en, this message translates to:
+  /// **'VERIFY'**
+  String get authVerify;
+
+  /// No description provided for @authResendCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code!'**
+  String get authResendCode;
+
+  /// No description provided for @authCreateNewPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Create New Password'**
+  String get authCreateNewPassword;
+
+  /// No description provided for @authResetCodeSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset code sent to your email'**
+  String get authResetCodeSent;
+
+  /// No description provided for @authResetPasswordSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset successfully'**
+  String get authResetPasswordSuccess;
+
+  /// No description provided for @authCodeVerified.
+  ///
+  /// In en, this message translates to:
+  /// **'Code verified successfully'**
+  String get authCodeVerified;
 }
 
 class _AppLocalizationsDelegate

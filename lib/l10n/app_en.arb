@@ -56,7 +56,7 @@
 
   "authResetPassword": "Reset Password",
   "authResetPasswordHint": "Password must contain at least 6 characters,\nincluding uppercase, lowercase, number and symbol",
-
+  "authPasswordResetSuccessfully":"New password reset successfully",
   "authPasswordRequired": "Password is required",
   "authPasswordLength": "Password must be at least 8 characters",
   "authPasswordInvalid": "Password must contain uppercase, lowercase, number and symbol",
@@ -237,4 +237,18 @@
   "networkServerNotFound": "Sorry, something went wrong. Please try again.",
   "networkServerInternalError": "Internal server error. Please try again later.",
   "networkServerDefaultError": "Sorry, something went wrong. Please try again."
+,
+  "authForgetPasswordTitle": "Forget Password",
+  "authForgetPasswordSubtitle": "Please enter your registered email address to receive a verification code.",
+  "authContinue": "CONTINUE",
+  "authVerification": "Verification",
+  "authVerificationSubtitle": "We've sent a verification code to",
+  "authVerificationHint": "Enter the code below to continue.",
+  "authEnterDigitCode": "Enter 6-digit code",
+  "authVerify": "VERIFY",
+  "authResendCode": "Resend code!",
+  "authCreateNewPassword": "Create New Password",
+  "authResetCodeSent": "Reset code sent to your email",
+  "authResetPasswordSuccess": "Password reset successfully",
+  "authCodeVerified": "Code verified successfully"
 }

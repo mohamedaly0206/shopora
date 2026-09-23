@@ -164,6 +164,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل،\nبما في ذلك حرف كبير وحرف صغير ورقم ورمز';
 
   @override
+  String get authPasswordResetSuccessfully => 'تم تعيين كلمة المرور بنجاح';
+
+  @override
   String get authPasswordRequired => 'كلمة المرور مطلوبة';
 
   @override
@@ -678,4 +681,45 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get networkServerDefaultError =>
       'عذرًا، حدث خطأ. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get authForgetPasswordTitle => 'نسيت كلمة المرور';
+
+  @override
+  String get authForgetPasswordSubtitle =>
+      'يرجى إدخال عنوان بريدك الإلكتروني المسجل لتلقي رمز التحقق.';
+
+  @override
+  String get authContinue => 'استمرار';
+
+  @override
+  String get authVerification => 'التحقق';
+
+  @override
+  String get authVerificationSubtitle => 'لقد أرسلنا رمز التحقق إلى';
+
+  @override
+  String get authVerificationHint => 'أدخل الرمز أدناه للمتابعة.';
+
+  @override
+  String get authEnterDigitCode => 'أدخل الرمز المكون من 4 أرقام';
+
+  @override
+  String get authVerify => 'تحقق';
+
+  @override
+  String get authResendCode => 'إعادة إرسال الرمز!';
+
+  @override
+  String get authCreateNewPassword => 'إنشاء كلمة مرور جديدة';
+
+  @override
+  String get authResetCodeSent =>
+      'تم إرسال رمز إعادة الضبط إلى بريدك الإلكتروني';
+
+  @override
+  String get authResetPasswordSuccess => 'تم إعادة تعيين كلمة المرور بنجاح';
+
+  @override
+  String get authCodeVerified => 'تم التحقق من الرمز بنجاح';
 }

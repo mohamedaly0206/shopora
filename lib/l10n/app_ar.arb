@@ -1,4 +1,4 @@
-{
+﻿{
   "appName": "شوبورا",
 
   "authLogin": "تسجيل الدخول",
@@ -56,6 +56,7 @@
 
   "authResetPassword": "إعادة تعيين كلمة المرور",
   "authResetPasswordHint": "يجب أن تحتوي كلمة المرور على 8 أحرف على الأقل،\nبما في ذلك حرف كبير وحرف صغير ورقم ورمز",
+  "authPasswordResetSuccessfully":"تم تعيين كلمة المرور بنجاح",
 
   "authPasswordRequired": "كلمة المرور مطلوبة",
   "authPasswordLength": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
@@ -237,4 +238,18 @@
   "networkServerNotFound": "عذرًا، حدث خطأ. يرجى المحاولة مرة أخرى.",
   "networkServerInternalError": "خطأ داخلي في الخادم. يرجى المحاولة لاحقًا.",
   "networkServerDefaultError": "عذرًا، حدث خطأ. يرجى المحاولة مرة أخرى."
+,
+  "authForgetPasswordTitle": "نسيت كلمة المرور",
+  "authForgetPasswordSubtitle": "يرجى إدخال عنوان بريدك الإلكتروني المسجل لتلقي رمز التحقق.",
+  "authContinue": "استمرار",
+  "authVerification": "التحقق",
+  "authVerificationSubtitle": "لقد أرسلنا رمز التحقق إلى",
+  "authVerificationHint": "أدخل الرمز أدناه للمتابعة.",
+  "authEnterDigitCode": "أدخل الرمز المكون من 4 أرقام",
+  "authVerify": "تحقق",
+  "authResendCode": "إعادة إرسال الرمز!",
+  "authCreateNewPassword": "إنشاء كلمة مرور جديدة",
+  "authResetCodeSent": "تم إرسال رمز إعادة الضبط إلى بريدك الإلكتروني",
+  "authResetPasswordSuccess": "تم إعادة تعيين كلمة المرور بنجاح",
+  "authCodeVerified": "تم التحقق من الرمز بنجاح"
 }
