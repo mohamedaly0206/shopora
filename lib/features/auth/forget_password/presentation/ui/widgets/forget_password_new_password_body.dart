@@ -124,6 +124,7 @@ class _ForgetPasswordNewPasswordBodyState
                 return CustomElevatedButton(
                   text: loc.authContinue,
                   isLoading: isLoading,
+                  hideArrowIcon: true,
                   onPressed: isLoading
                       ? null
                       : () {

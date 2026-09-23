@@ -73,7 +73,6 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             ),
             body: PageView(
               controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
               children: const [
                 ForgetPasswordEmailBody(),
                 ForgetPasswordVerifyCodeBody(),

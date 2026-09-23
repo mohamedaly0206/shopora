@@ -39,7 +39,9 @@ class _ForgetPasswordEmailBodyState extends State<ForgetPasswordEmailBody> {
           children: [
             Text(
               loc.authForgetPasswordSubtitle,
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
             const SizedBox(height: 24),
 

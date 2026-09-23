@@ -5,12 +5,14 @@ class CustomElevatedButton extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool isLoading;
   final String text;
+  final bool hideArrowIcon;
 
   const CustomElevatedButton({
     super.key,
     required this.onPressed,
     required this.isLoading,
     required this.text,
+    this.hideArrowIcon = false,
   });
 
   @override
@@ -31,7 +33,7 @@ class CustomElevatedButton extends StatelessWidget {
               children: [
                 Text(text),
                 const SizedBox(width: 8),
-                const Icon(Icons.arrow_forward),
+                if (!hideArrowIcon) const Icon(Icons.arrow_forward),
               ],
             ),
     );
